@@ -99,6 +99,9 @@ def parse_url(url):
     fragment = None
     query = None
 
+    if isinstance(url, bytes):
+        url = url.decode('utf-8')
+
     # Scheme
     if '://' in url:
         scheme, url = url.split('://', 1)
