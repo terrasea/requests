@@ -65,7 +65,7 @@ class RequestEncodingMixin(object):
             url.append('?')
             url.append(query)
 
-        return ''.join(url)
+        return ''.join([isinstance(x, bytes) and x.decode('utf-8') or x for x in url])
 
     @staticmethod
     def _encode_params(data):
