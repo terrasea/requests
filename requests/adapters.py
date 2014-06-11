@@ -181,9 +181,8 @@ class HTTPAdapter(BaseAdapter):
         response.reason = response.raw.reason
 
         if isinstance(req.url, bytes):
-            response.url = req.url.decode('utf-8')
-        else:
-            response.url = req.url
+            req.url = req.url.decode('utf-8')
+        response.url = req.url
 
         # Add new cookies from the server.
         extract_cookies_to_jar(response.cookies, req, resp)
