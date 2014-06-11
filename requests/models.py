@@ -224,6 +224,8 @@ class Request(RequestHooksMixin):
             self.register_hook(event=k, hook=v)
 
         self.method = method
+        if isinstance(url, bytes):
+            url = bytes(url, 'utf-8')
         self.url = url
         self.headers = headers
         self.files = files
