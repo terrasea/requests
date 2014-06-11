@@ -96,7 +96,7 @@ def get_netrc_auth(url):
         host = ri.netloc.split(':')[0]
 
         try:
-            _netrc = netrc(netrc_path).authenticators(host)
+            _netrc = netrc(netrc_path).authenticators(host).decode('utf-8')
             if _netrc:
                 # Return with login / password
                 login_i = (0 if _netrc[0] else 1)
