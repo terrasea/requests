@@ -600,9 +600,11 @@ class Session(SessionRedirectMixin):
     def get_adapter(self, url):
         """Returns the appropriate connnection adapter for the given URL."""
         for (prefix, adapter) in self.adapters.items():
-
+            if isinstance(url, bytes): #make sure where comparing apples with apples
+                prefix = bytes(prefix, 'utf-8')
             if url.lower().startswith(prefix):
                 return adapter
+            
 
         # Nothing matches :-/
         raise InvalidSchema("No connection adapters were found for '%s'" % url)
